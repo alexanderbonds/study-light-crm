@@ -1,0 +1,56 @@
+<h3>Задачи</h3>
+<form class="col p-0" novalidate ng-submit="getTasks()" >
+    <div class="row m-1">
+      <div class="col p-0 m-1">
+        <label for="taskStates">Статусы задач</label>
+        <select class="custom-select" multiple size="2" name="taskStates" id="taskStates" ng-model = "filter.taskStatesId">
+          <option ng-repeat="ts in allTaskStates" value="{{ts.id}}">{{ts.name}}</option>
+        </select>
+      </div>
+      <div class="col p-0 m-1">
+        <label for="title">Наименование</label>
+        <input  class="form-control" name="title" ng-model="filter.title" id="title" type="text">
+      </div>
+      <div class="col p-0 m-1">
+        <label for="producer">Постановщик</label>
+        <select class="custom-select" name="producer" id="producer" ng-model = "filter.producerId">
+          <option ng-repeat="p in allProfiles" value="{{p.id}}">{{p.lastname}} {{p.firstname}} {{p.middlename}}</option>
+        </select>
+      </div>
+      <div class="col p-0 m-1">
+        <label for="responsible">Ответственный</label>
+        <select class="custom-select" name="responsible" id="responsible" ng-model = "filter.responsibleId">
+          <option ng-repeat="p in allProfiles" value="{{p.id}}">{{p.lastname}} {{p.firstname}} {{p.middlename}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row m-1">
+      <button type="submit" class="btn btn-primary mr-1">Фильтровать</button>
+      <button class="btn btn-success mr-1" ng-click="cleanFilter()">Очистить</button>
+    </div>
+</form>
+<button class="btn btn-success mr-1" ng-click="createNew()">Создать новую</button>
+<table class="table table-hover" cellpadding="0" cellspacing="0">
+  <thead>
+  <tr>
+    <td>Статус</td>
+    <td>Наименование</td>
+    <td>Постановщик</td>
+    <td>Ответственный</td>
+    <td>Дата постановки</td>
+    <td>Дата окончания</td>
+    <td>Дата планируемого окончания</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="t in allTasks">
+    <td>{{t.taskStateName}}</td>
+    <td><a href="#!/tasks/{{t.id}}">{{t.title}}</a></td>
+    <td>{{t.producer.lastname}} {{t.producer.firstname}} {{t.producer.middlename}}</td>
+    <td>{{t.responsible.lastname}} {{t.responsible.firstname}} {{t.responsible.middlename}}</td>
+    <td>{{t.startDate}}</td>
+    <td>{{t.endDate}}</td>
+    <td>{{t.deadline}}</td>
+  </tr>
+  </tbody>
+</table>

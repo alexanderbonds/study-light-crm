@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+<div ng-app>
+    <div class="chat-container">
+        <h3 class="text-center">Сообщения</h3>
+        <div class="chat_header">
+            <div class="recipient-name">
+                <span>{{currentChat.recipientName}}</span>
+            </div>
+            <div class="chat_search">
+                <input type="text" placeholder="Поиск..." ng-model="searchText">
+            </div>
+        </div>
+
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div class="recent_heading">
+                        <h4>Недавние чаты</h4>
+                    </div>
+                    <div class="inbox_chat">
+                        <div class="chat_list active_chat">
+                            <div class="chat_people">
+                                <picture class="chat_img">
+                                    <source srcset="{{currentChat.recipientAvatar}}">
+                                    <img src="https://ptetutorials.com/images/user-profile.png">
+                                </picture>
+                                <div class="chat_ib">
+                                    <h5>{{currentChat.recipientName}} <span class="chat_date">{{currentChat.lastMessage.timestamp}}</span></h5>
+                                    <p>{{currentChat.lastMessage.content}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat_list" ng-repeat="c in chats | orderBy: 'c.lastMessage.timestamp'" ng-if="c.chatId!=currentChat.chatId">
+                            <div class="chat_people">
+                                <div>
+                                    <picture class="chat_img">
+                                        <source srcset="{{c.recipientAvatar}}">
+                                        <img src="https://ptetutorials.com/images/user-profile.png">
+                                    </picture>
+                                    <div class="chat_ib" ng-click="setActive(c.chatId, c.recipientId)">
+                                        <h5>{{c.recipientName}} <span class="chat_date">{{c.lastMessage.timestamp}}</span></h5>
+                                        <p>{{c.lastMessage.content}}</p> <p ng-if="c.unreadMessageCount>0" style="color:red;">Непрочитано ({{c.unreadMessageCount}})</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mesgs">
+                    <div class="msg_history" scroll="messages">
+                        <div ng-repeat="m in messages | orderBy: 'timestamp' | filter:searchText"r>
+                            <div class="incoming_msg" ng-if="currentChat.senderId!=m.senderId">
+                                <div class="incoming_msg_img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"
+                                         style="height: 52px; width: 52px;">
+                                        <mask id="avatar">
+                                            <circle cx="18" cy="18" fill="white" r="18"></circle>
+                                        </mask>
+                                        <g mask="url(#avatar)">
+                                            <image x="0" y="0" ng-if="!currentChat.recipientAvatar" height="100%"
+                                                   preserveAspectRatio="xMidYMid slice"
+                                                   width="100%" href="https://ptetutorials.com/images/user-profile.png"
+                                                   style="height: 36px; width: 36px;"></image>
+                                            <image x="0" y="0" height="100%"
+                                                   preserveAspectRatio="xMidYMid slice"
+                                                   width="100%" href="{{currentChat.recipientAvatar}}"
+                                                   style="height: 36px; width: 36px;"></image>
+                                            <circle class="outline" cx="18" cy="18" r="18"></circle>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="received_msg">
+                                    <div class="received_withd_msg">
+                                        <span>{{currentChat.recipientName}}:</span>
+                                        <p>{{m.content}}</p>
+                                        <span class="time_date">{{m.timestamp}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="outgoing_msg" ng-if="currentChat.senderId==m.senderId">
+                                <div class="sent_msg">
+                                    <span>Я:</span>
+                                    <p>{{m.content}}</p>
+                                    <span class="time_date">{{m.timestamp}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type_msg">
+                        <form ng-submit="sendMessage()">
+                            <div class="input_msg_write">
+                                <textarea id="chatInput" ng-enter="sendMessage()" type="text" wrap="soft" class="write_msg"
+                                          placeholder="Введите сообщение" ng-model="messageText" required/>
+                                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
+                                                                              aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

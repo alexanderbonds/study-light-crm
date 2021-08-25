@@ -1,0 +1,137 @@
+<div >
+
+  <form ng-submit="submitAddEditTask()">
+
+    <div class="row">
+
+      <div class="row m-1" ng-if="task.id>0">
+        <label for="id">Id</label>
+        <input type="text" readonly class="form-control" id="id" ng-model="task.id" name="id">
+      </div>
+
+      <div class="row m-1">
+        <label for="taskState">Статус задачи</label>
+        <input type="text" readonly class="form-control" id="taskState" ng-model="task.taskStateName" name="taskState">
+      </div>
+
+      <div class="row m-1">
+        <label for="startDate">Дата создания</label>
+        <input type="text" class="form-control" id="startDate" ng-model="task.startDate" name="startDate">
+      </div>
+
+      <div class="row m-1">
+        <button type="submit" class="btn btn-primary mr-1">Сохранить</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row m-1">
+        <label for="endDate">Дата окончания</label>
+        <input type="text" class="form-control" id="endDate" ng-model="task.endDate" name="endDate">
+      </div>
+
+      <div class="row m-1">
+        <label for="deadline">Дата планируемого окончания задачи</label>
+        <input type="text" class="form-control" id="deadline" ng-model="task.deadline" name="deadline">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row m-1">
+        <label for="title">Наименование</label>
+        <input class="form-control" type="text" id="title" ng-model="task.title" name="title">
+      </div>
+      <div class="row m-1">
+        <label for="project">Проект</label>
+        <a href="#!/projects/{{task.projectId}}" class="form-control" id="project">{{project.name}}</a>
+      </div>
+      <div class="col">
+        <div>
+          <input type="checkbox" id="allowChangeDeadline" ng-model="task.allowChangeDeadline"
+                 name="allowChangeDeadline">
+          <label for="allowChangeDeadline">Признак доступа к смене даты планируемого окончания задачи</label>
+        </div>
+        <div>
+          <input type="checkbox" id="expired" ng-model="task.expired" name="expired">
+          <label for="expired">Просрочена </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="description">Описание</label>
+      <textarea class="form-control" id="description" rows="10"  cols="auto" ng-model="task.description" name="description">
+        {{task.description}}
+      </textarea>
+    </div>
+
+    <div class="row">
+      <label for="producer">Автор</label>
+      <input type="text" class="form-control" id="producer" value="{{task.producer.lastname}} {{task.producer.firstname}}">
+    </div>
+
+    <div class="row">
+      <label for="responsible">Исполнитель</label>
+      <input type="text" class="form-control" id="responsible" value="{{task.responsible.lastname}} {{task.responsible.firstname}}">
+    </div>
+
+    <div class="row">
+      <label for="companyName">Компания</label>
+      <input type="text" class="form-control" id="companyName" value="{{task.companyName}}">
+    </div>
+
+  </form>
+</div>
+
+<hr/>
+<div>
+  <h6>Другие исполнители</h6>
+  <span class="col-sm-3 col-form-label col-form-label-lg" ng-if="task.coExecutors.length == 0">Отсутствуют</span>
+  <table class="table table-hover" ng-if="task.coExecutors.length > 0" cellpadding="0" cellspacing="0">
+    <tbody>
+    <tr ng-repeat="coEx in task.coExecutors">
+      <td> {{coEx.lastname}} {{coEx.firstname}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h6>Наблюдатели</h6>
+  <span class="col-sm-3 col-form-label col-form-label-lg" ng-if="task.spectators.length == 0">Отсутствуют</span>
+  <table class="table table-hover" ng-if="task.spectators.length > 0" cellpadding="0" cellspacing="0">
+    <tbody>
+    <tr ng-repeat="spec in task.spectators">
+      <td> {{spec.lastname}} {{spec.firstname}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr/>
+
+<div>
+  <h6>Комментарии</h6>
+  <span class="col-sm-3 col-form-label col-form-label-lg" ng-if="task.comments.length == 0">Комментарии отсутствуют</span>
+  <table class="table table-hover" ng-if="task.comments.length > 0" cellpadding="0" cellspacing="0">
+    <thead class="thead-light">
+    <tr align="center">
+      <th>Автор</th>
+      <th>Email автора</th>
+      <th>Дата</th>
+      <th>Содержание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr align="center" ng-repeat="com in task.comments">
+      <td> {{com.authorLastName}} {{com.authorFirstName}}</td>
+      <td>{{com.authorEmail}}</td>
+      <td>
+      <time>{{com.createdDate}}</time>
+      </td>
+      <td>{{com.text}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>

@@ -1,0 +1,204 @@
+<h3>Профиль сотрудника</h3>
+
+<div class="mb-3 text-left">
+
+    <hr/>
+    <div class="preview_container">
+        <div class="avatar_wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" style="height: 200px; width: 200px;">
+                <mask id="avatar">
+                    <circle cx="18" cy="18" fill="white" r="18"></circle>
+                </mask>
+                <a ng-click="getPhoto()">
+                    <g mask="url(#avatar)">
+                        <image x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
+                               href="{{img}}"
+                               style="height: 36px; width: 36px;"></image>
+                        <image x="0" y="0" ng-if="!img" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
+                               href="https://ptetutorials.com/images/user-profile.png"
+                               style="height: 36px; width: 36px;"></image>
+                        <circle class="outline" cx="18" cy="18" r="18"></circle>
+                    </g>
+                </a>
+            </svg>
+        </div>
+
+        <div class="upload-file__wrapper">
+            <input class="upload-file__input" type="file" id="inputPhoto" aria-describedby="inputGroupFileAddon04"
+                   aria-label="Upload" onchange="angular.element(this).scope().uploadFile(this)" required=""
+                   accept=".jpg, .jpeg, .png, .bmp, .gif">
+
+            <label class="upload-file__label" for="inputPhoto">
+                <svg class="upload-file__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M286 384h-80c-14.2 1-23-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c11.6 11.6 3.7 33.1-13.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-23-23V366c0-13.3 10.7-24 24-24h136v8c0 31 24.3 56 56 56h80c30.9 0 55-26.1 57-55v-8h135c13.3 0 24 10.6 24 24zm-124 88c0-11-9-20-19-20s-19 9-20 20 9 19 20 20 21-9 20-20zm64 0c0-12-9-20-20-20s-20 9-19 20 9 20 20 20 21-9 20-20z">
+                    </path>
+                </svg>
+                <span class="upload-file__text">Загрузить фото</span>
+            </label>
+        </div>
+    </div>
+    <hr/>
+
+    <form class="form-signin">
+        <div class="form-group row">
+            <label for="nickname" class="col-sm-3 col-form-label col-form-label-lg">Логин</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="nickname"
+                       value="{{currentProfile.userLogin}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="lastname" class="col-sm-3 col-form-label col-form-label-lg">Фамилия</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="lastname"
+                       value="{{currentProfile.lastname}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="firstname" class="col-sm-3 col-form-label col-form-label-lg">Имя</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="firstname"
+                       value="{{currentProfile.firstname}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="middlename" class="col-sm-3 col-form-label col-form-label-lg">Отчество</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="middlename"
+                       value="{{currentProfile.middlename}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label col-form-label-lg">Email</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="staticEmail"
+                       value="{{currentProfile.email}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label col-form-label-lg">Телефон</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="phone"
+                       value="{{currentProfile.phone}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="birthday" class="col-sm-3 col-form-label col-form-label-lg">Дата
+                рождения</label>
+            <div class="col-sm-5">
+                <input type="date" readonly class="form-control form-control-lg" id="birthday"
+                       value="{{currentProfile.birthdate}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="staticSex" class="col-sm-3 col-form-label col-form-label-lg">Пол</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="staticSex"
+                       value="{{currentProfile.sex}}">
+            </div>
+        </div>
+        <hr/>
+        <div class="form-group row">
+            <label for="staffUnit" class="col-sm-3 col-form-label col-form-label-lg">Должность</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="staffUnit"
+                       value="{{currentProfile.staffUnitName}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="employmentDate" class="col-sm-3 col-form-label col-form-label-lg">Дата
+                приема</label>
+            <div class="col-sm-5">
+                <input type="text" readonly class="form-control form-control-lg" id="employmentDate"
+                       value="{{currentProfile.employmentDate}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="department" class="col-sm-3 col-form-label col-form-label-lg">Отдел</label>
+            <div class="col-sm-5">
+                <input type="text" readonly ng-repeat="d in currentProfile.departmentNames"
+                       class="form-control form-control-lg" id="department"
+                       value="{{d}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="managedDepartment" class="col-sm-3 col-form-label col-form-label-lg">Возглавляемые
+                отделы</label>
+            <div class="col-sm-5">
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-label col-form-label-lg"
+                          ng-if="currentProfile.managedDepartments.length == 0">Отсутствуют</span>
+                </div>
+                <input type="text" readonly ng-if="currentProfile.managedDepartments.length > 0"
+                       ng-repeat="m in currentProfile.managedDepartments"
+                       class="form-control form-control-lg" id="managedDepartment"
+                       value="{{m.name}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="companies" class="col-sm-3 col-form-label col-form-label-lg">Клиенты</label>
+            <div class="col-sm-5">
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-label col-form-label-lg" ng-if="currentProfile.companyNames.length == 0">Отсутствуют</span>
+                </div>
+                <input type="text" readonly ng-if="currentProfile.companyNames.length > 0"
+                       ng-repeat="c in currentProfile.companyNames"
+                       class="form-control form-control-lg" id="companies"
+                       value="{{c}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="roles" class="col-sm-3 col-form-label col-form-label-lg">Уровни доступа</label>
+            <div class="col-sm-5">
+                <input type="text" readonly ng-repeat="r in currentProfile.roles" class="form-control form-control-lg"
+                       id="roles"
+                       value="{{r}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="priorities" class="col-sm-3 col-form-label col-form-label-lg">Доп. доступы</label>
+            <div class="col-sm-5">
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-label col-form-label-lg" ng-if="currentProfile.priorities.length == 0">Отсутствуют</span>
+                </div>
+                <input type="text" readonly ng-if="currentProfile.priorities.length > 0" ng-repeat="p in currentProfile.priorities"
+                       class="form-control form-control-lg" id="priorities"
+                       value="{{p}}">
+            </div>
+        </div>
+    </form>
+</div>
+<hr/>
+
+<div>
+    <h6>Комментарии</h6>
+    <span class="col-sm-3 col-form-label col-form-label-lg"
+          ng-if="currentProfile.comments.length == 0">Комментарии отсутствуют</span>
+    <table class="table table-hover" ng-if="currentProfile.comments.length > 0" cellpadding="0" cellspacing="0">
+        <thead class="thead-light">
+        <tr align="center">
+            <th>Автор</th>
+            <th>Email автора</th>
+            <th>Дата</th>
+            <th>Содержание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr align="center" ng-repeat="com in currentProfile.comments">
+            <td> {{com.authorLastName}} {{com.authorFirstName}}</td>
+            <td>{{com.authorEmail}}</td>
+            <td>
+                <time>{{com.createdDate}}</time>
+            </td>
+            <td>{{com.text}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

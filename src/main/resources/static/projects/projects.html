@@ -1,0 +1,40 @@
+<h3>Проекты</h3>
+<form class="col" novalidate ng-submit="getProjects()" >
+    <div class="row">
+        <div class="col">
+            <label for="manager">Руководитель проекта</label>
+            <select class="custom-select" name="manager" id="manager" ng-model = "filter.managerId">
+                <option ng-repeat="p in allProfiles" value="{{p.id}}">{{p.lastname}} {{p.firstname}} {{p.middlename}}</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="company">Клиент</label>
+            <select class="custom-select" name="company" id="company" ng-model = "filter.companyId">
+                <option ng-repeat="p in allCompanies" value="{{p.id}}">{{p.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+        <button class="btn btn-success" ng-click="cleanFilter()">Очистить</button>
+    </div>
+</form>
+
+<table class="table table-hover" cellpadding="0" cellspacing="0">
+    <thead>
+    <tr>
+        <td>Наименование</td>
+        <td>Руководитель</td>
+        <td>Описание прокта</td>
+        <td>Клиент</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="p in allProjects">
+        <td><a href="#!/projects/{{p.id}}">{{p.name}}</a></td>
+        <td>{{p.manager.lastname}} {{p.manager.firstname}} {{p.manager.middlename}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.companyName}}</td>
+    </tr>
+    </tbody>
+</table>

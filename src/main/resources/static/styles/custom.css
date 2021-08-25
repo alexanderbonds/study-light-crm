@@ -1,0 +1,163 @@
+md-input-container .md-input {
+    text-align: center;
+}
+
+.nav_container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.padding_right {
+    padding-right: 15px;
+}
+
+.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.main_logo {
+    transform: scale(1.8);
+}
+
+.main_title {
+    padding-bottom: 2px;
+    padding-left: 10px;
+    font-size: larger;
+}
+
+.person_logo {
+    transform: scale(0.8);
+    margin-bottom: 5px;
+}
+
+.body_container {
+    width: 100%;
+    display: flex;
+    padding-right: 15px;
+    padding-left: 15px;
+    align-items: stretch;
+}
+
+.chat_container {
+    min-width: 25px;
+    margin-right: 15px;
+    height: 90%
+}
+
+.content_container {
+    width: 100%;
+}
+
+.chat_search input[type=text] {
+    width: 95%;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.main_search input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: auto;
+    margin-right: 16px;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 600px) {
+    .main_search input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 6px;
+    }
+    .main_search input[type=text] {
+        border: 1px solid #ccc;
+    }
+}
+
+html, body, .nav_container, .body_container, .chat_container, .content_container {
+    height: 100%;
+}
+
+.preview_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+md-list-item.md-3-line {
+    align-items: center;
+}
+
+.avatar_wrapper {
+    max-width: 700px;
+    /*margin: 3rem auto;*/
+    padding: 1rem;
+}
+
+.outline {
+    stroke-width: 2;
+    stroke: rgba(0, 0, 0, 0.1);
+    fill: none;
+}
+
+.upload-file__input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    width: 0.4px;
+    height: 0.4px;
+}
+
+.upload-file__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 250px;
+    max-height: 35px;
+    border: 2px dashed #150B22;
+    padding: 9px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.upload-file__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 11px;
+}
+
+.upload-file__label .upload-file__text,
+.upload-file__label .upload-file__icon path {
+    transition: .25s ease;
+}
+
+.upload-file__label:hover .upload-file__text {
+    color: #0277BD;
+}
+
+.upload-file__label:hover .upload-file__icon path {
+    fill: #0277BD;
+}
+
+.upload-file__label:hover {
+    border: 2px dashed #0277BD;
+}
+
+md-input-container > p {
+    font-size: 0.8em;
+    text-align: left;
+    width: 100%;
+}
+
+.create-profile-form {
+    min-width: 35%;
+    min-height: 95%;
+}

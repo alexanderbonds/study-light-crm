@@ -1,0 +1,120 @@
+<md-dialog class="create-profile-form">
+    <form ng-cloak ng-submit="submitCreateNewUser()" name="newProfileForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Добавить нового сотрудника</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Логин</label>
+                    <input md-maxlength="50" minlength="3" required md-no-asterisk name="login"
+                           ng-model="newUser.login">
+                    <div ng-messages="newProfileForm.login.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">Логин должен содержать не более 50 символов.</div>
+                        <div ng-message="minlength">Логин должен содержать не менее 3 символов.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Пароль</label>
+                    <input type="password" md-maxlength="255" minlength="3" required md-no-asterisk name="password"
+                           ng-model="newUser.password">
+                    <div ng-messages="newProfileForm.password.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">Пароль должен содержать не более 255 символов.</div>
+                        <div ng-message="minlength">Пароль должен содержать не менее 3 символов.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Повтор ввода пароля</label>
+                    <input type="password" md-maxlength="255" minlength="3" required md-no-asterisk
+                           name="confirmationPassword" ng-model="newUser.confirmationPassword"
+                           ng-pattern="newUser.password">
+                    <div ng-messages="newProfileForm.confirmationPassword.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">Пароль должен содержать не более 255 символов.</div>
+                        <div ng-message="minlength">Пароль должен содержать не менее 3 символов.</div>
+                        <div ng-message="pattern">Пароли не совпадают.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Фамилия</label>
+                    <input md-maxlength="50" minlength="3" required md-no-asterisk name="lastname"
+                           ng-model="newUser.lastname">
+                    <div ng-messages="newProfileForm.lastname.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">Фамилия должна содержать не более 50 символов.</div>
+                        <div ng-message="minlength">Фамилия должна содержать не менее 3 символов.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Имя</label>
+                    <input md-maxlength="50" minlength="3" required md-no-asterisk name="firstname"
+                           ng-model="newUser.firstname">
+                    <div ng-messages="newProfileForm.firstname.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">Имя должно содержать не более 50 символов.</div>
+                        <div ng-message="minlength">Имя должно содержать не менее 3 символов.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Отчество</label>
+                    <input md-maxlength="50" minlength="3" required md-no-asterisk name="middlename"
+                           ng-model="newUser.middlename">
+                    <div ng-messages="newProfileForm.middlename.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">Отчество должно содержать не более 50 символов.</div>
+                        <div ng-message="minlength">Отчество должно содержать не менее 3 символов.</div>
+                    </div>
+                </md-input-container>
+
+                <div layout-gt-xs="row">
+
+                    <md-input-container flex-gt-xs class="md-block">
+                        <label>Должность</label>
+                        <md-select required md-no-asterisk name="staffUnitName" ng-model="newUser.staffUnitName">
+                            <md-option ng-repeat="sun in unitnames" value="{{sun}}">{{sun}}</md-option>
+                        </md-select>
+                        <div ng-messages="newProfileForm.staffUnitName.$error">
+                            <div ng-message="required">Обязательное поле.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Дата найма</label>
+                        <md-datepicker ng-model="newUser.employmentDate"></md-datepicker>
+                    </md-input-container>
+                </div>
+
+                <md-input-container class="md-block">
+                    <label>Отделы</label>
+                    <md-select name="departmentNames" ng-model="newUser.departmentNames" multiple="multiple">
+                        <md-option ng-repeat="dn in departmentnames" value="{{dn}}">{{dn}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Отменить
+            </md-button>
+            <md-button type="submit">
+                Добавить
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

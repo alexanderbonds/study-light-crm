@@ -1,0 +1,43 @@
+<div class="chat_container">
+    <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span>Чаты</span>
+            <md-button aria-label="menu">
+                <md-icon md-svg-src="img/menu.svg"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content style="height: 90%">
+        <md-list class="md-dense" flex>
+            <md-list-item class="notification" id="{{c.chatId}}" ng-repeat="c in chats">
+                <md-button ng-click="open(c.recipientId, c.chatId)">
+                    <md-tooltip style="font-size: 15px; height: auto" md-direction="right">{{c.recipientName}}
+                        <span ng-if="c.unreadMessageCount>0" style="font-size: 14px; color: red"><br>Новых сообщений: {{c.unreadMessageCount}}</span>
+                    </md-tooltip>
+                    <div class="chat_panel_avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"
+                             style="height: 80px; width: 80px;">
+                            <mask id="avatar">
+                                <circle cx="18" cy="18" fill="white" r="18"></circle>
+                            </mask>
+                            <g mask="url(#avatar)">
+                                <image x="0" y="0" ng-if="!c.recipientAvatar" height="100%"
+                                       preserveAspectRatio="xMidYMid slice"
+                                       width="100%" href="https://ptetutorials.com/images/user-profile.png"
+                                       style="height: 36px; width: 36px;"></image>
+                                <image x="0" y="0" height="100%"
+                                       preserveAspectRatio="xMidYMid slice"
+                                       width="100%" href="{{c.recipientAvatar}}"
+                                       style="height: 36px; width: 36px;"></image>
+                                <circle class="outline" cx="18" cy="18" r="18"></circle>
+                            </g>
+                        </svg>
+                        <span ng-if="c.unreadMessageCount>0" class="badge">{{c.unreadMessageCount}}</span>
+                    </div>
+                </md-button>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+    </md-content>
+</div>

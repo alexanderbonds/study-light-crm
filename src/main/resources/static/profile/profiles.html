@@ -1,0 +1,127 @@
+<h3>Сотрудники</h3>
+<div>
+    <md-button class="md-raised md-success" ng-click="showAdvanced($event)" md-colors="{background: 'green'}">
+        Добавить
+    </md-button>
+    <br/><br/>
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Отчество</td>
+            <td>Название должности</td>
+            <td>Дата найма</td>
+            <td>Список отделов</td>
+            <td>userId</td>
+            <td>Логин</td>
+            <td>Список прав</td>
+            <td>Идентификатор должности</td>
+            <td>Список ролей</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in allProfiles">
+            <td>{{p.id}}</td>
+            <td>{{p.firstname}}</td>
+            <td>{{p.lastname}}</td>
+            <td>{{p.middlename}}</td>
+            <td>{{p.staffUnitName}}</td>
+            <td>{{p.employmentDate}}</td>
+            <td>
+                <span ng-repeat="dep in p.departmentNames">{{dep}} <br></span>
+            </td>
+            <td>{{p.userId}}</td>
+            <td>{{p.userLogin}}</td>
+            <td>
+                <span ng-repeat="prior in p.priorities">{{prior}} <br></span>
+            </td>
+            <td>{{p.userLogin}}</td>
+            <td>
+                <span ng-repeat="role in p.roles">{{role}} <br></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+<!--    <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel"-->
+<!--         aria-hidden="true">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="categoryModalLabel">Добавить нового сотрудника</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <form name="myFormCategory" novalidate ng-submit="submitCreateNewUser()">-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userLogin">Логин</label>-->
+<!--                            <input class="form-control" type="text" required ng-model="newUser.login"-->
+<!--                                   id="userLogin">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userPass">Пароль</label>-->
+<!--                            <input class="form-control" type="password" required ng-model="newUser.password"-->
+<!--                                   id="userPass">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userPassRepeat">Повтор ввода пароля</label>-->
+<!--                            <input class="form-control" type="password" required ng-model="newUser.confirmationPassword"-->
+<!--                                   id="userPassRepeat">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userLastName">Фамилия</label>-->
+<!--                            <input class="form-control" type="text" required ng-model="newUser.lastname"-->
+<!--                                   id="userLastName">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userFirstName">Имя</label>-->
+<!--                            <input class="form-control" type="text" required ng-model="newUser.firstname"-->
+<!--                                   id="userFirstName">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userMiddleName">Отчество</label>-->
+<!--                            <input class="form-control" type="text" required ng-model="newUser.middlename"-->
+<!--                                   id="userMiddleName">-->
+<!--                        </div>-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="staffUnitName">Должность</label>-->
+<!--                            <select class="form-control" type="text" required id="staffUnitName"-->
+<!--                                    ng-model="newUser.staffUnitName">-->
+<!--                                <option ng-repeat="sun in unitnames">{{sun}}</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;          todo натроить парсер дат с OffsetDateTime (c LocalDate работает&ndash;&gt;-->
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="userEmploymentDate">Дата приема</label>-->
+<!--                            <input class="form-control" type="date" required ng-model="newUser.employmentDate"-->
+<!--                                   id="userEmploymentDate" placeholder="yyyy-MM-dd">-->
+<!--                        </div>-->
+
+<!--                        <div class="form-group col-md-10">-->
+<!--                            <label for="departmentNames">Отделы</label>-->
+<!--                            <select class="form-control" id="departmentNames" multiple="multiple"-->
+<!--                                    ng-model="newUser.departmentNames">-->
+<!--                                <option selected value=""></option>-->
+<!--                                <option ng-repeat="dn in departmentnames" value="{{dn}}">{{dn}}</option>-->
+<!--                            </select>-->
+<!--                            <small id="emailHelp" class="form-text text-muted">Используйте Ctrl + левую кнопку мыши для-->
+<!--                                выбора нескольких отделов</small>-->
+<!--                        </div>-->
+
+<!--                        <div class="modal-footer">-->
+
+<!--                            <button class="btn btn-success" ng-disabled="myFormCategory.$invalid" type="submit">-->
+<!--                                Добавить-->
+<!--                            </button>-->
+<!--                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>

@@ -1,0 +1,73 @@
+<md-dialog class="create-company-form w-75">
+    <form ng-cloak ng-submit="submitNewCompany()" name="newCompanyForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Добавить новую компанию</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Наименование</label>
+                    <input required md-no-asterisk name="companyName"
+                           ng-model="newCompany.name">
+                </md-input-container>
+
+                <md-checkbox ng-model="newCompany.type" name="companyType">
+                    Является юрлицом
+                </md-checkbox>
+
+                <md-input-container class="md-block">
+                    <label>ИНН</label>
+                    <input type="number" md-maxlength="10" minlength="10" required md-no-asterisk
+                           name="companyInn" ng-model="newCompany.inn">
+                    <div ng-messages="newCompany.inn.$error">
+                        <div ng-message="required">Обязательное поле.</div>
+                        <div ng-message="md-maxlength">ИНН должен содержать строго 10 цифр.</div>
+                        <div ng-message="minlength">ИНН должен содержать строго 10 цифр.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Номер счета</label>
+                    <input type="number" required md-no-asterisk name="companyBillNumber"
+                           ng-model="newCompany.billNumber">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Телефон</label>
+                    <input required md-no-asterisk name="companyPhoneNumber"
+                           ng-model="newCompany.phoneNumber">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input type="email" required md-no-asterisk name="companyEmail"
+                           ng-model="newCompany.email">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Курирующие менеджеры</label>
+                    <md-select name="companyManagers" ng-model="newCompany.managers" multiple="multiple">
+                        <md-option ng-repeat="manager in responsibleManagers" ng-value="{{manager}}">{{manager.firstname + ' ' + manager.lastname}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Отменить
+            </md-button>
+            <md-button type="submit">
+                Добавить
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
